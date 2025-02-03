@@ -16,6 +16,7 @@ Docker vérifie si le nom appelé existe localement. Puisqu'il n'est pas sur la 
 
 Retrouvez les informations suivantes sur le container lancé précédemment : 
 1. Quel est son identifiant ? 
+
 2. Quel est son nom ? 
 3. Quel est son état ? 
 4. Quel est le nom de son image?  Avez-vous vu au point 1.1. d''où cette image provenait?  
@@ -33,6 +34,7 @@ Retrouvez les informations suivantes sur le container lancé précédemment :
 ### 2.1. Interagir avec un container
 
 1. A quoi servent les options ```i``` et ```t```dans la commande ci-dessus? 
+I permet de rendre le docker interactif et t permet d'avoir accès au docker via le terminal.
 2. Chaque container Docker est destiné à exécuter une commande unique.  Quelle est-elle dans ce cas-ci? 
 3. Dans le container, quels sont les processus présents?  Et leurs PIDs? 
 4. Avec quel utilisateur êtes-vous loggé? 
