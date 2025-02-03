@@ -1,5 +1,5 @@
 
-Noms des auteurs :  Patureau Bastien
+Noms des auteurs :  Patureau Bastien, Guillaume Ladrière
 Date de réalisation : 03/02/2025
 
 
@@ -7,9 +7,9 @@ Date de réalisation : 03/02/2025
 
 ### 1.1. Hello World 
 
-Pouvez-vous expliquer avec vos mots ce qui s'est passé suite à l'exécution de cette commande? 
+#### Pouvez-vous expliquer avec vos mots ce qui s'est passé suite à l'exécution de cette commande? 
 
-
+Docker vérifie si le nom appelé existe localement. Puisqu'il n'est pas sur la machine locale, il l'import depuis la librairie dockerhub.
 
 ### 1.2.  Observer un container
 
