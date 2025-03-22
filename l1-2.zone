@@ -1,6 +1,6 @@
 $TTL 86400
-@   IN  SOA ns1.l1-2.ephec-ti.be. admin.l1-2.ephec-ti.be. (
-        2024031205  ; Numero de serie (YYYYMMDDXX)
+@   IN  SOA ns.l1-2.ephec-ti.be. admin.l1-2.ephec-ti.be. (
+        2024031207  ; Numero de serie (YYYYMMDDXX)
         3600        ; Rafraichissement 
         1800        ; Reessai 
         1209600     ; Expiration 
@@ -8,11 +8,12 @@ $TTL 86400
 )
 
 ; Les NS
-@   IN  NS  ns1.l1-2.ephec-ti.be.
+@   IN  NS  ns.l1-2.ephec-ti.be.
 
 ; Les A 
-ns1	IN A	54.36.180.26
+ns      IN A    54.36.180.26
 www	IN A	54.36.181.70
+mail	IN A	54.36.180.122
 
 ; cnames
 blog	IN CNAME	www
