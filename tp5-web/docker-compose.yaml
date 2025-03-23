@@ -1,0 +1,21 @@
+services:
+  nginx:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./html/:/var/www/html/
+
+  mariadb:
+    image: mariadb:11.1
+    env_file:
+      - db/root.env
+      - db.env
+    volumes:
+      - ./db/sql/:/docker-entrypoint-initdb.d/ #MariaDB container automatically loads SQL script at startup
+  php:
+    build: php
+    volumes:
+      - ./html/:/var/www/html/
+    env_file:
+      - db.env
