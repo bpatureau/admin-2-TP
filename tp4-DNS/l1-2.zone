@@ -1,9 +1,9 @@
 $TTL 86400
 @   IN  SOA ns.l1-2.ephec-ti.be. admin.l1-2.ephec-ti.be. (
-        2024031210  ; Numero de serie (YYYYMMDDXX)
-        7200        ; Rafraichissement (2 heures)
-        3600        ; Reessai (1 heure)
-        1209600     ; Expiration
+        2024031211  ; Serial (YYYYMMDDXX)
+        14400       ; Refresh
+        3600        ; Retry (1h)
+        1209600     ; Exp
         86400       ; Valeur par défaut du TTL négatif
 )
 
