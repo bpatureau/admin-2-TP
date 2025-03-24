@@ -1,6 +1,6 @@
 $TTL 86400
 @   IN  SOA ns.l1-2.ephec-ti.be. admin.l1-2.ephec-ti.be. (
-        2024031208  ; Numero de serie (YYYYMMDDXX)
+        2024031209  ; Numero de serie (YYYYMMDDXX)
         3600        ; Rafraichissement 
         1800        ; Reessai 
         1209600     ; Expiration 
@@ -18,4 +18,4 @@ mail	IN A	54.36.180.122
 ; cnames
 blog	IN CNAME	www
 
-_acme-challenge	IN TXT	"ajxrGJqPViLhjkS1ZBVBY71YdbDk9svDdZuT307hYGQ"
+_acme-challenge.l1-2.ephec-ti.be. 86400	IN TXT	"68sC-Z3hBbZv34HZUMCbGAcG8qEQ0Nby_gdpm1fpKHM"
