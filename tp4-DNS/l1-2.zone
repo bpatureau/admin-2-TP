@@ -1,9 +1,9 @@
 $TTL 86400
 @   IN  SOA ns.l1-2.ephec-ti.be. admin.l1-2.ephec-ti.be. (
-        2024031209  ; Numero de serie (YYYYMMDDXX)
-        3600        ; Rafraichissement 
-        1800        ; Reessai 
-        1209600     ; Expiration 
+        2024031210  ; Numero de serie (YYYYMMDDXX)
+        7200        ; Rafraichissement (2 heures)
+        3600        ; Reessai (1 heure)
+        1209600     ; Expiration
         86400       ; Valeur par défaut du TTL négatif
 )
 
@@ -11,11 +11,15 @@ $TTL 86400
 @   IN  NS  ns.l1-2.ephec-ti.be.
 
 ; Les A 
-ns      IN A    54.36.180.26
-www	IN A	54.36.181.70
-mail	IN A	54.36.180.122
+ns      IN  A    54.36.180.26
+www     IN  A    54.36.181.70
+mail    IN  A    54.36.180.122
 
 ; cnames
-blog	IN CNAME	www
+blog    IN  CNAME   www
 
-_acme-challenge.l1-2.ephec-ti.be. 86400	IN TXT	"68sC-Z3hBbZv34HZUMCbGAcG8qEQ0Nby_gdpm1fpKHM"
+; MX record
+@       IN  MX 10   mail.l1-2.ephec-ti.be.
+
+; ACME challenge
+_acme-challenge.l1-2.ephec-ti.be. 86400  IN  TXT "68sC-Z3hBbZv34HZUMCbGAcG8qEQ0Nby_gdpm1fpKHM"
