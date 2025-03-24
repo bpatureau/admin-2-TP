@@ -1,0 +1,43 @@
+services:
+  nginx:
+    container_name: web
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./html/:/var/www/html/
+      - ./certificate/letsencrypt:/etc/letsencrypt
+    networks:
+      - dmz
+
+  mariadb:
+    container_name: db
+    image: mariadb:11.1
+    env_file:
+      - db/root.env
+      - db.env
+    volumes:
+      - ./db/sql/:/docker-entrypoint-initdb.d/ # MariaDB container automatically loads SQL script at startup
+      - ./db/my-resolve.cnf:/etc/mysql/conf.d/my-resolve.cnf
+      - ./db/data_db/:/var/lib/mysql/
+    networks:
+      - db_net
+
+  php:
+    container_name: php
+    build: php
+    volumes:
+      - ./html/:/var/www/html/
+    env_file:
+      - db.env
+    networks:
+      - dmz
+      - db_net
+
+networks:
+  dmz:
+    driver: bridge
+  db_net:
+    driver: bridge
+
