@@ -1,6 +1,6 @@
 $TTL 86400
 @   IN  SOA ns.l1-2.ephec-ti.be. admin.l1-2.ephec-ti.be. (
-        2025040718  ; Serial (YYYYMMDDXX)
+        2025052522  ; Serial (YYYYMMDDXX)
         21600       ; Refresh
         3600        ; Retry (1h)
         1209600     ; Exp
@@ -14,6 +14,12 @@ $TTL 86400
 ns      IN  A    54.36.180.26
 www     IN  A    54.36.181.70
 mail    IN  A    54.36.180.122
+@       IN  A    54.36.180.26
+
+; Round-robin pour le service swarm
+swarm   IN      A       54.36.180.26
+swarm   IN      A       54.36.181.70
+swarm   IN      A       54.36.180.122
 
 ; cnames
 blog    IN  CNAME   www
@@ -32,6 +38,9 @@ _acme-challenge.l1-2.ephec-ti.be. 86400  IN  TXT "68sC-Z3hBbZv34HZUMCbGAcG8qEQ0N
 _dmarc.l1-2.ephec-ti.be. IN TXT "v=DMARC1; p=quarantine; adkim=s; aspf=s; rua=mailto:postmaster@l1-2.ephec-ti.be; ruf=mailto:postmaster@l1-2.ephec-ti.be; sp=quarantine; ri=86400; pct=100; fo=1; rf=afrf"
 
 ; DKIM
-mail._domainkey IN      TXT     ( "v=DKIM1; h=sha256; k=rsa; "
+mail._domainkey IN      TXT     ( "v=DKIM1; k=rsa; "
           "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtRWJ0Z18yS7wKxbXyyWpBCbe8mE3jnBNjPAh1kduM9bZFhczPXEqBcelIKpuAV/ZQygXfIlFJeI977pLnk8pXNeIw7irqbyZdooYkOXYkjGiaU8OvI9ZPeoGg8BhXfeeQd5IcqEaTSerMHb/quHF3Ak1HmEnU2JRr+PFOuuD6/mukwUU4qCOyidQYvGQ+0ZaH43a/SoAmuRrWL"
           "0QfhDZKeJPVWiWPjp/Jq1Ka9gXH5YTkNokV7Vts85QjsnNN1vcNXZSG6wPVZBG/jbvM7dzeaLFCdU6zawHVNNDu/nkyoXk5KYC8qf/DkCtSj/PZiRIwnDiiRBSqdon2J8UkUXXdwIDAQAB" )
+
+
+@       IN TXT  "v=TLSRPTv1; rua=mailto:admin@l1-2.ephec-ti.be"
