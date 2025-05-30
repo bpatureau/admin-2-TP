@@ -1,0 +1,123 @@
+version: "3.9"
+
+services:
+  db:
+    image: maxion78/woody_database:latest
+    environment:
+      - MYSQL_DATABASE=woody
+      - MYSQL_ROOT_PASSWORD=pass
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - woody_network
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      restart_policy:
+        condition: on-failure
+
+  redis:
+    image: redis:alpine
+    networks:
+      - woody_network
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+    networks:
+      - woody_network
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+
+  product_service:
+    image: maxion78/woody_product:latest
+    networks:
+      - woody_network
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+
+  order_service:
+    image: maxion78/woody_order:latest
+    networks:
+      - woody_network
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - redis
+      - db
+      - rabbitmq
+
+  order_worker:
+    image: maxion78/woody_order_worker:latest
+    networks:
+      - woody_network
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - db
+      - rabbitmq
+
+  misc_service:
+    image: maxion78/woody_misc:latest
+    networks:
+      - woody_network
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+
+  front:
+    image: maxion78/woody_front:latest
+    networks:
+      - woody_network
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  reverse:
+    image: maxion78/woody_rp:latest
+    ports:
+      - "80:8080"
+    networks:
+      - woody_network
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    depends_on:
+      - front
+      - product_service
+      - order_service
+      - misc_service
+
+networks:
+  woody_network:
+    driver: overlay
+    attachable: true
+
+volumes:
+  db-data:
+  rabbitmq-data:
+  redis-data:

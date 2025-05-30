@@ -1,0 +1,5 @@
+flask
+flask-cors
+redis
+mysql-connector-python
+pika
