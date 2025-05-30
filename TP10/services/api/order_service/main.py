@@ -4,6 +4,7 @@ import pika
 import json
 import logging
 import time
+import woody
 
 # Configuration du logging
 logging.basicConfig(level=logging.INFO)
@@ -79,6 +80,18 @@ def create_order():
     except Exception as e:
         logger.error(f"Erreur dans create_order: {e}")
         return f"Erreur serveur: {str(e)}", 500
+
+@app.route('/api/orders', methods=['GET'])
+def get_order():
+    try:
+        order_id = request.args.get('order_id')
+        if not order_id:
+            return "No order ID", 400
+
+        status = woody.get_order(order_id)
+        return f'Order "{order_id}": {status}'
+    except Exception as e:
+        return f"Error retrieving order: {str(e)}", 500
 
 @app.route('/health', methods=['GET'])
 def health():
