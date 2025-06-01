@@ -46,7 +46,7 @@ services:
     networks:
       - woody_network
     deploy:
-      replicas: 2
+      replicas: 3
       restart_policy:
         condition: on-failure
 
@@ -55,7 +55,7 @@ services:
     networks:
       - woody_network
     deploy:
-      replicas: 2
+      replicas: 3
       restart_policy:
         condition: on-failure
     depends_on:
@@ -80,7 +80,7 @@ services:
     networks:
       - woody_network
     deploy:
-      replicas: 2
+      replicas: 3
       restart_policy:
         condition: on-failure
 
@@ -89,7 +89,7 @@ services:
     networks:
       - woody_network
     deploy:
-      replicas: 2
+      replicas: 3
       update_config:
         parallelism: 1
         delay: 10s
@@ -103,7 +103,7 @@ services:
     networks:
       - woody_network
     deploy:
-      replicas: 2
+      replicas: 3
       restart_policy:
         condition: on-failure
     depends_on:
